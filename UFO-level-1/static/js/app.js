@@ -1,5 +1,5 @@
 
-
+var df = data;
 var tbody = d3.select("tbody");
 
 
@@ -8,7 +8,7 @@ var tbody = d3.select("tbody");
 
     // Step 5: Use d3 to update each cell's text with
 // weather report values (weekday, date, high, low)
-data.forEach(function(UFOsighting) {
+df.forEach(function(UFOsighting) {
     // console.log(UFOsighting);
      var row = tbody.append("tr");
      Object.entries(UFOsighting).forEach(function([key, value]) {
@@ -33,20 +33,21 @@ data.forEach(function(UFOsighting) {
     var inputteddatetime = d3.select("#datetime");
     var inputteddatetimevalue = inputteddatetime.property("value");
 
-    var filtered = data.filter(data => data.datetime === inputteddatetimevalue);
+    var filtered = df.filter(df => df.datetime === inputteddatetimevalue);
 
     console.log(filtered);
 
+    filtered.forEach(function(UFOsightingfiltered) {
+      // console.log(UFOsighting);
+       var row = tbody.append("tr");
+       Object.entries(UFOsightingfiltered).forEach(function([key, value]) {
+        // console.log(key, value);
+         // Append a cell to the row for each value
+         // in the weather report object
+         var cell = row.append("td");
+         cell.text(value);
+       });
+     });
+
   }
 
-  filtered.forEach(function(UFOsightingfiltered) {
-    // console.log(UFOsighting);
-     var row = tbody.append("tr");
-     Object.entries(UFOsightingfiltered).forEach(function([key, value]) {
-      // console.log(key, value);
-       // Append a cell to the row for each value
-       // in the weather report object
-       var cell = row.append("td");
-       cell.text(value);
-     });
-   });
